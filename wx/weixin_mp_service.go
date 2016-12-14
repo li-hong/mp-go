@@ -12,6 +12,7 @@ import (
 
 const (
 	MSG_EVENT = "event"
+	MSG_LOCATION = "location"
 	EVENT_SUBSCRIBE = "subscribe"
 	EVENT_UNSUBSCRIBE = "unsubscribe"
 )

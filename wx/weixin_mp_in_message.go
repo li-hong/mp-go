@@ -9,5 +9,7 @@ type WxMpXmlInMessage struct {
 	MsgId        string   `xml:"MsgId"`
 	Event        string   `xml:"Event"`
 	EventKey     string   `xml:"EventKey"`
+	Lat          string   `xml:"Location_X"`
+	Lng          string   `xml:"Location_Y"`
 }
 

@@ -11,10 +11,18 @@ func Handler(msg wx.WxMpXmlInMessage) interface{} {
 	city := "北京" //默认城市设为北京
 	openid := msg.FromUserName //查询用户地址
 
-	user, err := wx.MpUserInfo(openid)
-	if err == nil {
-		if (user.City != "") {
-			city = user.City
+	//接收的是位置消息
+	if (msg.MsgType == wx.MSG_LOCATION) {
+		dis := utils.GetLocationDistrict(msg.Lat, msg.Lng)
+		if dis != "" {
+			city = dis
+		}
+	} else {
+		user, err := wx.MpUserInfo(openid)
+		if err == nil {
+			if (user.City != "") {
+				city = user.City
+			}
 		}
 	}
 
