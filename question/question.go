@@ -13,6 +13,7 @@ func Handler(msg wx.WxMpXmlInMessage) interface{} {
 
 	//接收的是位置消息
 	if (msg.MsgType == wx.MSG_LOCATION) {
+		beego.Info(msg)
 		dis := utils.GetLocationDistrict(msg.Lat, msg.Lng)
 		if dis != "" {
 			city = dis

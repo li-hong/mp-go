@@ -40,7 +40,6 @@ func (c *WeixinMpController) Index() {
 	}
 
 	outMsg := question.Handler(msg)
-	beego.Info(outMsg)
 
 	if nil != outMsg {
 		obj, err := xml.Marshal(outMsg)
@@ -50,7 +49,6 @@ func (c *WeixinMpController) Index() {
 		return
 	}
 
-	beego.Info(msg)
 
 	c.Data["json"] = msg
 
