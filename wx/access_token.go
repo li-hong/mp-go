@@ -27,8 +27,8 @@ func GetAccessToken() (token string) {
 		url := fmt.Sprintf(
 			"%stoken?grant_type=client_credential&appid=%s&secret=%s",
 			"https://api.weixin.qq.com/cgi-bin/",
-			"wx478a0894ea001e37",
-			"a44026286b9bc89b544ab8cbbab47ac2",
+			"",
+			"",
 		)
 
 		data, err := utils.Get(url)
