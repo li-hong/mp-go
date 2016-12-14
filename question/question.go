@@ -3,6 +3,7 @@ package question
 import (
 	"mp-go/wx"
 	"mp-go/utils"
+	"github.com/astaxie/beego"
 )
 
 func Handler(msg wx.WxMpXmlInMessage) interface{} {
@@ -17,6 +18,7 @@ func Handler(msg wx.WxMpXmlInMessage) interface{} {
 		}
 	}
 
+	beego.Info("city=" + city)
 	content := utils.GetCityWeather(city)
 	textMsg.Content = content
 
