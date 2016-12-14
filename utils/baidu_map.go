@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/astaxie/beego"
 	"encoding/json"
+	"strings"
 )
 
 const (
@@ -37,5 +38,6 @@ func GetLocationDistrict(lat, lng string) (district string) {
 		beego.Error(err)
 	}
 	district = resp.GeocoderResult.AddressComponent.District
+	district = strings.Replace(district, "区", "", 1)
 	return
 }
