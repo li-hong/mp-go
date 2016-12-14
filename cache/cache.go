@@ -36,14 +36,14 @@ func Get(key string) interface{} {
 
 func init() {
 	// 从配置文件获取redis的ip以及db
-	REDIS_HOST := "123.57.19.104:6459"
+	REDIS_HOST := "127.0.0.1:9706"
 	// 建立连接池
 	RedisClient = &redis.Pool{
 		MaxIdle:     beego.AppConfig.DefaultInt("redis.maxidle", 1),
 		MaxActive:   beego.AppConfig.DefaultInt("redis.maxactive", 10),
 		IdleTimeout: 180 * time.Second,
 		Dial: func() (redis.Conn, error) {
-			c, err := redis.Dial("tcp", REDIS_HOST, redis.DialPassword("mYredis196"))
+			c, err := redis.Dial("tcp", REDIS_HOST, redis.DialPassword("1qaz2wsx3edc"))
 			if err != nil {
 				return nil, err
 			}

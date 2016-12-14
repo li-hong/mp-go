@@ -7,7 +7,17 @@ import (
 
 func Handler(msg wx.WxMpXmlInMessage) interface{} {
 	textMsg := wx.TextBuilder()
-	content:=utils.GetCityWeather("昌平")
+	city := "北京" //默认城市设为北京
+	openid := msg.FromUserName //查询用户地址
+
+	user, err := wx.MpUserInfo(openid)
+	if err == nil {
+		if (user.City != "") {
+			city = user.City
+		}
+	}
+
+	content := utils.GetCityWeather(city)
 	textMsg.Content = content
 
 	textMsg.FromUserName = msg.ToUserName
