@@ -7,7 +7,7 @@ import (
 )
 
 const (
-	api_url = "http://api.map.baidu.com/geocoder/v2/?location=%s,%s&output=json&pois=1&ak=D87fed887b258ae6cd1eba15a5a2e1ed"
+	geocoder_api_url = "http://api.map.baidu.com/geocoder/v2/?location=%s,%s&output=json&pois=1&ak=D87fed887b258ae6cd1eba15a5a2e1ed"
 )
 
 type geocoderResp struct {
@@ -23,7 +23,7 @@ type addressComponent struct {
 }
 
 func GetLocationDistrict(lat, lng string) (district string) {
-	url := fmt.Sprintf(api_url, lat, lng)
+	url := fmt.Sprintf(geocoder_api_url, lat, lng)
 	data, err := Get(url)
 	if err != nil {
 		beego.Error(err)
