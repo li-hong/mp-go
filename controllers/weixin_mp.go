@@ -34,6 +34,7 @@ func (c *WeixinMpController) Index() {
 	}
 
 	msg := wx.WxMpXmlInMessage{}
+	beego.Info(c.Ctx.Input.RequestBody)
 	xmlerr := xml.Unmarshal(c.Ctx.Input.RequestBody, &msg)
 	if xmlerr != nil {
 		beego.Error(xmlerr)
