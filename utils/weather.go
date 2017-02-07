@@ -78,7 +78,7 @@ func GetCityWeather(city string) (resp string) {
 		beego.Error(err)
 	}
 
-	beego.Error(result.Result[0].status)
+	beego.Error(result)
 	if "unknown city" == result.Result[0].status {
 		resp = ""
 		return

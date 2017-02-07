@@ -20,7 +20,6 @@ func Handler(msg wx.WxMpXmlInMessage) interface{} {
 		}
 	}
 
-	beego.Info("city=" + city)
 	var content string
 	content = utils.GetCityWeather(msg.Content)
 	if content == "" {
