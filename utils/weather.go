@@ -21,7 +21,7 @@ type weather struct {
 	Now           now `json:"now"`
 	Suggestion    sug `json:"suggestion"`
 	DailyForecast []dailyForecast `json:"daily_forecast"`
-	status        string
+	Status        string `json:"status"`
 }
 
 type aqi struct {
@@ -78,8 +78,8 @@ func GetCityWeather(city string) (resp string) {
 		beego.Error(err)
 	}
 
-	beego.Error(result)
-	if "unknown city" == result.Result[0].status {
+	beego.Error(result.Result[0])
+	if "unknown city" == result.Result[0].Status {
 		resp = ""
 		return
 	}
