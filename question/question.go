@@ -21,7 +21,11 @@ func Handler(msg wx.WxMpXmlInMessage) interface{} {
 	}
 
 	beego.Info("city=" + city)
-	content := utils.GetCityWeather(city)
+	var content string
+	content = utils.GetCityWeather(msg.Content)
+	if content == "" {
+		content = utils.GetCityWeather(city)
+	}
 	textMsg.Content = content
 
 	textMsg.FromUserName = msg.ToUserName

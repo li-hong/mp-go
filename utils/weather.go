@@ -21,6 +21,7 @@ type weather struct {
 	Now           now `json:"now"`
 	Suggestion    sug `json:"suggestion"`
 	DailyForecast []dailyForecast `json:"daily_forecast"`
+	status        string
 }
 
 type aqi struct {
@@ -48,11 +49,10 @@ type cond struct {
 	Txt  string `json:"txt"`
 }
 
-type city struct{
+type city struct {
 	Qlty string `json:"qlty"`
 	Pm25 string `json:"pm25"`
 }
-
 
 type dailyForecast struct {
 	Tmp tmp `json:"tmp"`
@@ -77,12 +77,18 @@ func GetCityWeather(city string) (resp string) {
 	if err != nil {
 		beego.Error(err)
 	}
+
+	if "unknown city" == result.Result[0].status {
+		resp = ""
+		return
+	}
+
 	now := result.Result[0].Now
 	today := result.Result[0].DailyForecast[0]
 	drsg := result.Result[0].Suggestion.Drsg
 	sport := result.Result[0].Suggestion.Sport
 	aqi := result.Result[0].Aqi
-	resp = fmt.Sprintf("%s今天%s,%s℃~%s℃,pm2.5 %s %s,当前温度%s℃,体感温度%s°,穿衣指数:%s,%s运动指数:%s,%s", city, now.Cond.Txt, today.Tmp.Min, today.Tmp.Max,aqi.City.Pm25,aqi.City.Qlty, now.Tmp, now.Fl, drsg.Brf, drsg.Txt, sport.Brf, sport.Txt)
+	resp = fmt.Sprintf("%s今天%s,%s℃~%s℃,pm2.5 %s %s,当前温度%s℃,体感温度%s°,穿衣指数:%s,%s运动指数:%s,%s", city, now.Cond.Txt, today.Tmp.Min, today.Tmp.Max, aqi.City.Pm25, aqi.City.Qlty, now.Tmp, now.Fl, drsg.Brf, drsg.Txt, sport.Brf, sport.Txt)
 	return
 }
 
