@@ -9,7 +9,7 @@ import (
 var header map[string]string
 
 const (
-	api_url = "http://apis.baidu.com/heweather/weather/free?city=%s"
+	api_url = "http://apis.baidu.com/heweather/pro/weather?city=%s"
 )
 
 type rootObject struct {

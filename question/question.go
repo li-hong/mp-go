@@ -9,23 +9,16 @@ import (
 func Handler(msg wx.WxMpXmlInMessage) interface{} {
 	textMsg := wx.TextBuilder()
 	city := "北京" //默认城市设为北京
-	openid := msg.FromUserName //查询用户地址
+	//openid := msg.FromUserName //查询用户地址
 
-	//接收的是位置消息
-	if (msg.MsgType == wx.MSG_LOCATION) {
-		beego.Info(msg)
-		dis := utils.GetLocationDistrict(msg.Lat, msg.Lng)
-		if dis != "" {
-			city = dis
-		}
-	} else {
-		user, err := wx.MpUserInfo(openid)
-		if err == nil {
-			if (user.City != "") {
-				city = user.City
-			}
-		}
-	}
+	////接收的是位置消息
+	//if (msg.MsgType == wx.MSG_LOCATION) {
+	//	beego.Info(msg)
+	//	dis := utils.GetLocationDistrict(msg.Lat, msg.Lng)
+	//	if dis != "" {
+	//		city = dis
+	//	}
+	//}
 
 	beego.Info("city=" + city)
 	content := utils.GetCityWeather(city)
