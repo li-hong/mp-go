@@ -22,10 +22,15 @@ type weather struct {
 	Suggestion    sug `json:"suggestion"`
 	DailyForecast []dailyForecast `json:"daily_forecast"`
 	Status        string `json:"status"`
+	Basic        basic `json:"basic"`
 }
 
 type aqi struct {
 	City city `json:"city"`
+}
+
+type basic struct {
+	City string `json:"city"`
 }
 
 type suggestion struct {
@@ -85,11 +90,12 @@ func GetCityWeather(city string) (resp string) {
 	}
 
 	now := result.Result[0].Now
+	basic := result.Result[0].Basic
 	today := result.Result[0].DailyForecast[0]
 	drsg := result.Result[0].Suggestion.Drsg
 	sport := result.Result[0].Suggestion.Sport
 	aqi := result.Result[0].Aqi
-	resp = fmt.Sprintf("%s今天%s,%s℃~%s℃,pm2.5 %s %s,当前温度%s℃,体感温度%s°,穿衣指数:%s,%s运动指数:%s,%s", city, now.Cond.Txt, today.Tmp.Min, today.Tmp.Max, aqi.City.Pm25, aqi.City.Qlty, now.Tmp, now.Fl, drsg.Brf, drsg.Txt, sport.Brf, sport.Txt)
+	resp = fmt.Sprintf("%s今天%s,%s℃~%s℃,pm2.5 %s %s,当前温度%s℃,体感温度%s°,穿衣指数:%s,%s运动指数:%s,%s", basic.City, now.Cond.Txt, today.Tmp.Min, today.Tmp.Max, aqi.City.Pm25, aqi.City.Qlty, now.Tmp, now.Fl, drsg.Brf, drsg.Txt, sport.Brf, sport.Txt)
 	return
 }
 
